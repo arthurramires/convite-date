@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Convite Especial 🫀</title>
+  
+  <!-- Open Graph / WhatsApp Preview -->
+  <meta property="og:title" content="Você tem um convite especial... 🫀">
+  <meta property="og:description" content="Clica aqui pra ver e responder! 👀">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#9b111e">
+
+  <!-- Google Fonts: Fredoka & Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <!-- Floating Hearts Background -->
+  <div id="hearts-container" aria-hidden="true"></div>
+
+  <!-- Main Mobile App Shell -->
+  <main class="app-viewport">
+    <div class="phone-frame">
+      <!-- Dynamic Island / Notch Mockup on desktop -->
+      <div class="dynamic-island" aria-hidden="true"></div>
+
+      <!-- Top Banner for Screen 1 ("POR FAVOR!!") -->
+      <div id="plea-banner" class="plea-banner hidden">
+        <span>POR FAVOR!! 🥺</span>
+      </div>
+
+      <!-- ==================== SCREEN 1: O PEDIDO ==================== -->
+      <section id="screen-1" class="screen active">
+        <div class="screen-content">
+          <div class="emoji-hero">
+            <!-- Pleading Face SVG -->
+            <div class="pleading-avatar">
+              <svg viewBox="0 0 120 120" class="custom-emoji">
+                <defs>
+                  <radialGradient id="faceGrad" cx="35%" cy="30%" r="65%">
+                    <stop offset="0%" stop-color="#FFF275"/>
+                    <stop offset="60%" stop-color="#FFD13B"/>
+                    <stop offset="100%" stop-color="#F59E0B"/>
+                  </radialGradient>
+                  <radialGradient id="eyeGrad" cx="40%" cy="40%" r="60%">
+                    <stop offset="0%" stop-color="#4A5568"/>
+                    <stop offset="70%" stop-color="#1A202C"/>
+                    <stop offset="100%" stop-color="#000000"/>
+                  </radialGradient>
+                  <linearGradient id="blushGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#FF6B81" stop-opacity="0.8"/>
+                    <stop offset="100%" stop-color="#FF4757" stop-opacity="0.3"/>
+                  </linearGradient>
+                </defs>
+                <!-- Head -->
+                <circle cx="60" cy="60" r="54" fill="url(#faceGrad)" filter="drop-shadow(0 8px 16px rgba(0,0,0,0.25))"/>
+                <!-- Blush -->
+                <ellipse cx="28" cy="74" rx="12" ry="7" fill="url(#blushGrad)"/>
+                <ellipse cx="92" cy="74" rx="12" ry="7" fill="url(#blushGrad)"/>
+                <!-- Big Puppy Eyes -->
+                <ellipse cx="38" cy="52" rx="16" ry="19" fill="url(#eyeGrad)"/>
+                <ellipse cx="82" cy="52" rx="16" ry="19" fill="url(#eyeGrad)"/>
+                <!-- Eye Highlights -->
+                <circle cx="34" cy="45" r="7" fill="#FFFFFF"/>
+                <circle cx="43" cy="58" r="3.5" fill="#FFFFFF"/>
+                <circle cx="78" cy="45" r="7" fill="#FFFFFF"/>
+                <circle cx="87" cy="58" r="3.5" fill="#FFFFFF"/>
+                <!-- Sad eyebrows -->
+                <path d="M 24 34 Q 38 26 50 36" fill="none" stroke="#8C4A00" stroke-width="4.5" stroke-linecap="round"/>
+                <path d="M 96 34 Q 82 26 70 36" fill="none" stroke="#8C4A00" stroke-width="4.5" stroke-linecap="round"/>
+                <!-- Pouting mouth -->
+                <path d="M 49 84 Q 60 76 71 84" fill="none" stroke="#8C4A00" stroke-width="4.5" stroke-linecap="round"/>
+              </svg>
+              <!-- Begging Hands Overlay -->
+              <div class="praying-hands">🙏</div>
+            </div>
+          </div>
+
+          <div class="card-dialog">
+            <h1 class="proposal-title">VOCÊ ACEITARIA IR À UM DATE COMIGO?</h1>
+            
+            <div class="buttons-row" id="buttons-area">
+              <button id="btn-sim" class="btn btn-primary btn-pulse">
+                SIM
+              </button>
+              <button id="btn-nao" class="btn btn-secondary">
+                NÃO
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 2: A REAÇÃO ==================== -->
+      <section id="screen-2" class="screen">
+        <div class="screen-content">
+          <div class="emoji-hero">
+            <!-- Smirking face with rose -->
+            <div class="smirk-avatar">
+              <div class="big-emoji">😏</div>
+              <div class="rose-in-mouth">🌹</div>
+            </div>
+          </div>
+
+          <div class="card-dialog">
+            <h2 class="reaction-title">VOCÊ DISSE SIM? 😜</h2>
+            <p class="reaction-subtitle">Eu estava esperando você dizer não kkkk</p>
+
+            <button id="btn-next-to-date" class="btn btn-primary btn-block">
+              PRÓXIMO 🫀
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 3: DATA E HORÁRIO ==================== -->
+      <section id="screen-3" class="screen">
+        <div class="screen-content">
+          <div class="card-dialog card-flow">
+            <div class="flow-header">
+              <span class="step-icon">🗓️</span>
+              <h2 class="flow-title">Quando você tá LIVRE?</h2>
+            </div>
+
+            <div class="form-group">
+              <label for="date-input" class="input-label">Escolhe a data</label>
+              <div class="input-wrapper">
+                <input type="date" id="date-input" class="custom-input" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="time-input" class="input-label">Escolhe o horário</label>
+              <div class="input-wrapper">
+                <input type="time" id="time-input" class="custom-input" value="19:00" required>
+              </div>
+            </div>
+
+            <button id="btn-submit-date" class="btn btn-primary btn-block">
+              SELECIONAR A DATA 🫀
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 4: COMIDA ==================== -->
+      <section id="screen-4" class="screen">
+        <div class="screen-content">
+          <div class="card-dialog card-flow">
+            <div class="flow-header">
+              <h2 class="flow-title">O QUE TÁ AFIM? 😋</h2>
+              <p class="flow-subtitle">Escolhe a melhor comida pro nosso date</p>
+            </div>
+
+            <div class="options-grid food-grid" id="food-options">
+              <button type="button" class="option-card" data-food="Hambúrguer" data-icon="🍔">
+                <span class="option-icon">🍔</span>
+                <span class="option-label">Hambúrguer</span>
+              </button>
+
+              <button type="button" class="option-card" data-food="Sushi" data-icon="🍣">
+                <span class="option-icon">🍣</span>
+                <span class="option-label">Sushi</span>
+              </button>
+
+              <button type="button" class="option-card" data-food="Massas" data-icon="🍝">
+                <span class="option-icon">🍝</span>
+                <span class="option-label">Massas</span>
+              </button>
+
+              <button type="button" class="option-card" data-food="Tacos" data-icon="🌮">
+                <span class="option-icon">🌮</span>
+                <span class="option-label">Tacos</span>
+              </button>
+
+              <button type="button" class="option-card" data-food="Pizza" data-icon="🍕">
+                <span class="option-icon">🍕</span>
+                <span class="option-label">Pizza</span>
+              </button>
+            </div>
+
+            <button id="btn-submit-food" class="btn btn-primary btn-block" disabled>
+              BORA! 🫀
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 5: A VIBE / LOCAL ==================== -->
+      <section id="screen-5" class="screen">
+        <div class="screen-content">
+          <div class="card-dialog card-flow">
+            <div class="flow-header">
+              <h2 class="flow-title">QUAL É A VIBE? ☀️</h2>
+              <p class="flow-subtitle">Escolhe onde a gente vai</p>
+            </div>
+
+            <!-- Customização: Minha casa, Casa dela ou Na rua -->
+            <div class="options-grid places-grid" id="place-options">
+              <button type="button" class="option-card place-card" data-place="Minha casa" data-icon="🏠" data-pickup="Fica pronta que eu vou te buscar 🚗">
+                <span class="option-icon">🏠</span>
+                <span class="option-label">Minha casa</span>
+                <span class="option-hint">Filminho, conforto e sem pressa</span>
+              </button>
+
+              <button type="button" class="option-card place-card" data-place="Sua casa" data-icon="🏡" data-pickup="Fica pronta que eu chego aí 🚗">
+                <span class="option-icon">🏡</span>
+                <span class="option-label">Sua casa</span>
+                <span class="option-hint">No seu cantinho, levo tudo pronto</span>
+              </button>
+
+              <button type="button" class="option-card place-card" data-place="Na rua" data-icon="🌆" data-pickup="Fica pronta que eu vou te buscar 🚗">
+                <span class="option-icon">🌆</span>
+                <span class="option-label">Na rua</span>
+                <span class="option-hint">Restaurante, barzinho ou passeio</span>
+              </button>
+            </div>
+
+            <button id="btn-submit-place" class="btn btn-primary btn-block" disabled>
+              ISSO PARECE LEGAL! 🫀
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 6: CONFIRMAÇÃO FINAL ==================== -->
+      <section id="screen-6" class="screen">
+        <div class="screen-content">
+          <!-- Penguin Tux with sunglasses and rose -->
+          <div class="penguin-hero">
+            <svg viewBox="0 0 200 240" class="penguin-svg" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- Body gradient -->
+                <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#2D3748"/>
+                  <stop offset="100%" stop-color="#1A202C"/>
+                </linearGradient>
+                <!-- White belly -->
+                <linearGradient id="bellyGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FFFFFF"/>
+                  <stop offset="100%" stop-color="#EDF2F7"/>
+                </linearGradient>
+                <!-- Orange beak and feet -->
+                <linearGradient id="orangeGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#F6AD55"/>
+                  <stop offset="100%" stop-color="#ED8936"/>
+                </linearGradient>
+                <!-- Sunglasses shine -->
+                <linearGradient id="lensGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#1A202C"/>
+                  <stop offset="50%" stop-color="#111827"/>
+                  <stop offset="100%" stop-color="#000000"/>
+                </linearGradient>
+                <!-- Rose petal gradient -->
+                <radialGradient id="roseGrad" cx="40%" cy="30%" r="70%">
+                  <stop offset="0%" stop-color="#FF4D6D"/>
+                  <stop offset="50%" stop-color="#C9184A"/>
+                  <stop offset="100%" stop-color="#590D22"/>
+                </radialGradient>
+              </defs>
+
+              <!-- Feet -->
+              <ellipse cx="75" cy="225" rx="25" ry="12" fill="url(#orangeGrad)"/>
+              <ellipse cx="125" cy="225" rx="25" ry="12" fill="url(#orangeGrad)"/>
+
+              <!-- Main Body -->
+              <ellipse cx="100" cy="140" rx="65" ry="85" fill="url(#bodyGrad)"/>
+
+              <!-- White Belly -->
+              <ellipse cx="100" cy="155" rx="42" ry="65" fill="url(#bellyGrad)"/>
+
+              <!-- Flippers (Arms) -->
+              <!-- Right Flipper -->
+              <path d="M 160 135 C 175 155, 175 185, 155 195 C 148 185, 148 155, 155 135 Z" fill="#1A202C"/>
+
+              <!-- Left Flipper holding the rose -->
+              <path d="M 40 135 C 20 150, 25 180, 50 165 C 55 155, 48 140, 40 135 Z" fill="#1A202C"/>
+
+              <!-- The Rose Stem & Leaves -->
+              <path d="M 42 165 Q 35 125 32 95" fill="none" stroke="#2D6A4F" stroke-width="4.5" stroke-linecap="round"/>
+              <path d="M 37 135 Q 25 130 30 120 C 35 125 38 130 37 135 Z" fill="#40916C"/>
+              <path d="M 35 110 Q 48 105 44 95 C 38 100 35 106 35 110 Z" fill="#40916C"/>
+
+              <!-- The Rose Flower -->
+              <g transform="translate(30, 85)">
+                <ellipse cx="0" cy="0" rx="16" ry="14" fill="url(#roseGrad)"/>
+                <path d="M -10 -4 C -12 8, 12 8, 10 -4 C 8 -12, -8 -12, -10 -4 Z" fill="#A4133C"/>
+                <ellipse cx="0" cy="-2" rx="7" ry="5" fill="#FF758F"/>
+                <ellipse cx="0" cy="-2" rx="3" ry="2" fill="#FFFFFF" opacity="0.6"/>
+              </g>
+
+              <!-- Beak -->
+              <polygon points="100,105 85,93 115,93" fill="url(#orangeGrad)"/>
+
+              <!-- Cool Sunglasses -->
+              <g id="sunglasses">
+                <!-- Frame bridge -->
+                <rect x="90" y="74" width="20" height="5" rx="2" fill="#000000"/>
+                <!-- Left Lens Frame -->
+                <path d="M 60 66 L 94 66 C 96 66, 97 68, 96 72 L 91 88 C 89 94, 82 96, 76 96 L 68 96 C 62 96, 56 92, 55 86 L 53 72 C 52 68, 55 66, 60 66 Z" fill="#000000"/>
+                <!-- Left Lens Dark Glass -->
+                <path d="M 62 69 L 92 69 C 93 69, 94 70, 93 73 L 89 86 C 87 91, 81 93, 76 93 L 69 93 C 64 93, 59 90, 58 84 L 56 73 C 55 70, 57 69, 62 69 Z" fill="url(#lensGrad)"/>
+                <!-- Reflection line -->
+                <path d="M 62 72 L 80 72 L 73 88 L 60 88 Z" fill="#FFFFFF" opacity="0.25"/>
+
+                <!-- Right Lens Frame -->
+                <path d="M 106 66 L 140 66 C 145 66, 148 68, 147 72 L 145 86 C 144 92, 138 96, 132 96 L 124 96 C 118 96, 111 94, 109 88 L 104 72 C 103 68, 104 66, 106 66 Z" fill="#000000"/>
+                <!-- Right Lens Dark Glass -->
+                <path d="M 108 69 L 138 69 C 143 69, 145 70, 144 73 L 142 84 C 141 90, 136 93, 131 93 L 124 93 C 119 93, 113 91, 111 86 L 107 73 C 106 70, 107 69, 108 69 Z" fill="url(#lensGrad)"/>
+                <!-- Reflection line -->
+                <path d="M 112 72 L 130 72 L 123 88 L 110 88 Z" fill="#FFFFFF" opacity="0.25"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="card-dialog card-final">
+            <h2 class="final-title">TÔ CONTIGO, GATINHA. 🫀</h2>
+            <p class="final-subtitle" id="final-pickup-text">Fica pronta que eu vou te buscar 🚗</p>
+
+            <div class="summary-box">
+              <div class="summary-item">
+                <span class="summary-icon">🗓️</span>
+                <span class="summary-value" id="summary-date">Carregando data...</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-icon">⏰</span>
+                <span class="summary-value" id="summary-time">19:00</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-icon" id="summary-food-icon">🍣</span>
+                <span class="summary-value" id="summary-food">Sushi</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-icon" id="summary-place-icon">🏠</span>
+                <span class="summary-value" id="summary-place">Minha casa</span>
+              </div>
+            </div>
+
+            <!-- Action Buttons for Real World Usage -->
+            <div class="action-buttons-final">
+              <a id="btn-whatsapp-share" class="btn btn-whatsapp btn-block" href="#" target="_blank" rel="noopener">
+                MANDAR CONFIRMAÇÃO NO WHATSAPP 💬
+              </a>
+              <button id="btn-copy-summary" class="btn btn-outline btn-block">
+                Copiar Resumo 📋
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
